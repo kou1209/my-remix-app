@@ -1,10 +1,31 @@
 {
-  "name": "${PROJECT_NAME}",
+  "name": "my-remix-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "- 📖 [Remix docs](https://remix.run/docs)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "remix vite:dev"
   },
-  "private": true
+  "type": "module",
+  "private": true,
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@remix-run/node": "^2.15.2",
+    "@remix-run/react": "^2.15.2",
+    "@remix-run/serve": "^2.15.2",
+    "autoprefixer": "^10.4.20",
+    "isbot": "^4.4.0",
+    "postcss": "^8.4.49",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.17",
+    "vite-tsconfig-paths": "^5.1.4"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^2.15.2",
+    "vite": "^5.4.11"
+  }
 }
