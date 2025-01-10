@@ -9,6 +9,6 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export default function Index() {
-  return <div>index</div>;
+export default function IndexPage() {
+  return <div>index page</div>;
 }
