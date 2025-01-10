@@ -18,7 +18,7 @@ const isAuthorized = (request: Request) => {
     .toString()
     .split(':')
 
-  return username === '12345' && password === 'password'
+  return username === 'admin' && password === 'password'
 }
 
 export const loader = ({ request }: LoaderFunctionArgs) => {
