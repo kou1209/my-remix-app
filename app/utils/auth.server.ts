@@ -1,43 +1,36 @@
-const VALID_USERNAME = "12345"
-const VALID_PASSWORD = "password"
+const VALID_USERNAME = "aaaaa"
+const VALID_PASSWORD = "aaaaa"
 
-export async function authenticateUser(request: Request) {
+const createErrorResponse = (message: string, status: number, statusText: string) => {
+  return new Response(message, {
+    status,
+    statusText,
+    headers: {
+      "WWW-Authenticate": 'Basic realm="Secure Area"',
+    },
+  });
+};
+
+export const authenticateUser = async (request: Request) => {
   const authHeader = request.headers.get("Authorization");
 
   if (!authHeader) {
-    throw new Response("Unauthorized", {
-      status: 401,
-      statusText: "Unauthorized",
-      headers: {
-        "WWW-Authenticate": 'Basic realm="Secure Area"',
-      },
-    });
+    throw createErrorResponse("Unauthorized", 401, "Unauthorized");
   }
 
   const [scheme, credentials] = authHeader.split(" ");
 
   if (scheme !== "Basic") {
-    throw new Response("Invalid authentication scheme", {
-      status: 400,
-      statusText: "Bad Request",
-    });
+    throw createErrorResponse("Invalid authentication scheme", 400, "Bad Request");
   }
-
 
   const [username, password] = Buffer.from(credentials, "base64")
     .toString()
     .split(":");
 
   if (username !== VALID_USERNAME || password !== VALID_PASSWORD) {
-    throw new Response("Invalid credentials", {
-      status: 401,
-      statusText: "Unauthorized",
-      headers: {
-        "WWW-Authenticate": 'Basic realm="Secure Area"',
-      },
-    });
+    throw createErrorResponse("Invalid credentials", 401, "Unauthorized");
   }
 
-
   return true;
-}
+};

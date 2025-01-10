@@ -1,16 +1,9 @@
-import {type LoaderFunction, LoaderFunctionArgs} from "@remix-run/node";
-import {
-  Meta,
-  Links,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-  LiveReload
-} from "@remix-run/react";
+import {type LoaderFunction} from "@remix-run/node";
+import {Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData} from "@remix-run/react";
 import {authenticateUser} from "~/utils/auth.server";
 
 export const loader: LoaderFunction = async ({ request }) => {
-  await authenticateUser(request);
+  return await authenticateUser(request)
 };
 
 export default function App() {
@@ -25,7 +18,6 @@ export default function App() {
     <Outlet />
     <ScrollRestoration />
     <Scripts />
-    <LiveReload />
     </body>
     </html>
   )
